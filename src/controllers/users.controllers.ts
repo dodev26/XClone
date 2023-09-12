@@ -21,7 +21,8 @@ import User from '~/models/schemas/User.schema'
 import { USER_MESSAGES } from '~/constants/messages'
 import { HttpStatusCode, UserVerifyStatus } from '~/constants/enum'
 import databaseService from '~/services/database.services'
-// import databaseService from '~/services/database.services'
+import { config } from 'dotenv'
+config()
 
 export const registerController = async (
   req: Request<ParamsDictionary, any, RegisterRequestBody>,
@@ -54,6 +55,14 @@ export const loginController = async (req: Request<ParamsDictionary, any, LoginR
   })
 }
 
+export const oauthController = async (req: Request, res: Response, next: NextFunction) => {
+  const { code } = req.query
+
+  const result = await usersServices.oauth(code as string)
+  const { accessToken, newUser, refreshToken, verify } = result
+  const urlRedirect = `${process.env.CLIENT_REDIRECT_CALLBACK}?access_token=${accessToken}&refresh_token=${refreshToken}&new_user=${newUser}&verify=${verify}`
+  return res.redirect(urlRedirect)
+}
 export const LogoutController = async (req: Request<ParamsDictionary, any, LogoutRequestBody>, res: Response) => {
   const { refresh_token } = req.body
   const result = await usersServices.Logout(refresh_token)

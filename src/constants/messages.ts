@@ -25,6 +25,7 @@ export const USER_MESSAGES = {
   EMAIL_ALREADY_VERIFIED_BEFORE: 'Email already verified before',
   EMAIL_VERIFY_SUCCESSFULLY: 'Email verify successfully',
   RESEND_VERIFY_EMAIL_SUCCESSFULLY: 'Resend verify email successfully',
+  GMAIL_NOT_VERIFIED: 'Gmail not verifed',
   PASSWORD_IS_REQUIRED: 'Password is required',
   PASSWORD_MUST_BE_A_STRING: 'Password must be a string',
   PASSWORD_LENGTH: 'Password length must be from 6 to 50',

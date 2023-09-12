@@ -8,6 +8,7 @@ import {
   getProfileByUsernameController,
   getProfileController,
   loginController,
+  oauthController,
   registerController,
   resendVerifyEmailController,
   resetPasswordController,
@@ -49,6 +50,8 @@ usersRouter.get('/users', query('name').notEmpty().withMessage('name is required
 usersRouter.post('/register', registerValidator, wrapRequestHandler(registerController))
 
 usersRouter.post('/login', loginValidator, wrapRequestHandler(loginController))
+
+usersRouter.get('/oauth/google', wrapRequestHandler(oauthController))
 
 usersRouter.post('/logout', accessTokenValidator, refreshTokenValidator, wrapRequestHandler(LogoutController))
 
