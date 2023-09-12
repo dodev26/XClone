@@ -7,7 +7,7 @@ export interface RegisterRequestBody {
   name: string
   passwordConfirm: string
   password: string
-  dateOfBirth: Date
+  dateOfBirth: string
 }
 
 export interface LoginRequestBody {
